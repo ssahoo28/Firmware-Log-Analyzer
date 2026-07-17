@@ -1,13 +1,26 @@
 #include "LogFile.h"
 #include "LogParser.h"
 
+#include <iostream>
+
 bool LogFile::load(const std::string& filename)
 {
-    LogParser parser;
+    try
+    {
+        LogParser parser;
+        logs = parser.parseFile(filename);
+        return true;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Failed to load file: "
+                  << filename
+                  << std::endl;
 
-    logs = parser.parseFile(filename);
+        std::cout << e.what() << std::endl;
 
-    return !logs.empty();
+        return false;
+    }
 }
 
 const std::vector<LogEntry>& LogFile::getLogs() const

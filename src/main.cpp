@@ -8,7 +8,7 @@ int main()
 {
     LogFile logfile;
 
-    if(!logfile.load("../logs/sample.log"))
+    if(!logfile.load("../logs/sample_log.txt"))
     {
         return 1;
     }

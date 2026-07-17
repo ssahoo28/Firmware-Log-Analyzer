@@ -11,9 +11,12 @@ std::vector<LogEntry> LogParser::parseFile(const std::string& filename)
 {
     std::vector<LogEntry> logs;
 
-    std::ifstream file(filename);
+   std::ifstream file(filename);
 
-    throw std::runtime_error("Cannot open file");
+    if(!file)
+    {
+        throw std::runtime_error(    "Cannot open file : " + filename);
+    }
 
     std::string line;
 

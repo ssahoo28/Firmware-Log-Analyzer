@@ -5,11 +5,9 @@ WARNING : 2
 ERROR : 4
 
 Module Statistics
------------------
 BMC : 1
 PM : 3
 RESET : 1
 SECURITY : 1
 SPDM : 2
 TELEMETRY : 2
-===========================================
