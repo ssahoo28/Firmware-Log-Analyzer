@@ -1,0 +1,10 @@
+[2026-07-17 10:00:01] INFO PM Entering C6 State
+[2026-07-17 10:00:02] INFO TELEMETRY Bulk telemetry started
+[2026-07-17 10:00:03] WARNING SPDM Certificate mismatch
+[2026-07-17 10:00:04] ERROR PM Timeout waiting for VR
+[2026-07-17 10:00:05] ERROR BMC I3C communication failed
+[2026-07-17 10:00:06] INFO RESET Warm reset complete
+[2026-07-17 10:00:07] WARNING SECURITY Authentication delay
+[2026-07-17 10:00:08] ERROR SPDM Authentication failed
+[2026-07-17 10:00:09] INFO PM Package power stable
+[2026-07-17 10:00:10] ERROR TELEMETRY Sensor read failed
