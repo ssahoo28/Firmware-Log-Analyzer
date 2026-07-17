@@ -13,7 +13,7 @@ enum class LogLevel
 
 struct LogEntry
 {
-    std::string timestamp;
+    Timestamp timestamp;
     LogLevel level;
     std::string module;
     std::string message;

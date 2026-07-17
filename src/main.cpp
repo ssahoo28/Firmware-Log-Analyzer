@@ -2,14 +2,20 @@
 
 #include "LogAnalyzer.h"
 #include "LogParser.h"
+#include "LogFile.h"
 
 int main()
 {
-    LogParser parser;
-    LogAnalyzer analyzer;
+    LogFile logfile;
 
-    std::vector<LogEntry> logs =
-        parser.parseFile("../logs/sample_log.txt");
+    if(!logfile.load("../logs/sample.log"))
+    {
+        return 1;
+    }
+
+    const auto& logs = logfile.getLogs();
+
+    LogAnalyzer analyzer;
 
     int choice;
 

@@ -13,4 +13,8 @@ add_executable(
     src/LogParser.cpp
     src/LogAnalyzer.cpp
     src/LogLevelUtils.cpp
+    src/LogFile.cpp
+    src/Filter.cpp
+    src/ReportExporter.cpp
+    src/Sorter.cpp
 )

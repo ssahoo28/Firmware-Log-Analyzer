@@ -6,6 +6,8 @@
 #include <vector>
 
 #include "LogEntry.h"
+#include "Statistics.h"
+#include "ReportExporter.h"
 
 class LogAnalyzer
 {
@@ -22,14 +24,14 @@ public:
                        const std::string& keyword);
 
     void exportReport(const std::vector<LogEntry>& logs);
+    
+    void sortByTimestamp(std::vector<LogEntry>& logs);
 
 private:
 
-    int infoCount = 0;
-    int warningCount = 0;
-    int errorCount = 0;
-
-    std::map<std::string, int> moduleCount;
+    Statistics statistics;
+    ReportExporter exporter;
+    
 };
 
 #endif

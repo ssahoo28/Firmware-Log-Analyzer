@@ -13,11 +13,7 @@ std::vector<LogEntry> LogParser::parseFile(const std::string& filename)
 
     std::ifstream file(filename);
 
-    if (!file)
-    {
-        std::cout << "Unable to open file\n";
-        return logs;
-    }
+    throw std::runtime_error("Cannot open log file");
 
     std::string line;
 
@@ -33,7 +29,7 @@ std::vector<LogEntry> LogParser::parseFile(const std::string& filename)
         if (endBracket == std::string::npos)
             continue;
 
-        entry.timestamp = line.substr(1, endBracket - 1);
+        entry.timestamp = Timestamp(line.substr(1, endBracket - 1));
 
         // Remaining part after ]
         std::string remaining = line.substr(endBracket + 2);
