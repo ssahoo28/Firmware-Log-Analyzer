@@ -2,6 +2,7 @@
 #define LOGENTRY_H
 
 #include <string>
+#include "TimeStamp.h"
 
 enum class LogLevel
 {
@@ -13,7 +14,7 @@ enum class LogLevel
 
 struct LogEntry
 {
-    Timestamp timestamp;
+    std::string timestamp;
     LogLevel level;
     std::string module;
     std::string message;

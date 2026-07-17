@@ -14,13 +14,3 @@ bool Timestamp::operator<(const Timestamp& other) const
 {
     return value < other.value;
 }
-
-bool Timestamp::operator>(const Timestamp& other) const
-{
-    return value > other.value;
-}
-
-bool Timestamp::operator==(const Timestamp& other) const
-{
-    return value == other.value;
-}

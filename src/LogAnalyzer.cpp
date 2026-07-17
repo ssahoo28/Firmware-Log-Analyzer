@@ -1,9 +1,10 @@
 #include "LogAnalyzer.h"
 #include "Filter.h"
+#include "LogLevelUtils.h"
 
 #include <iostream>
 #include <fstream>
-#include <LogLevelUtils.h>
+#include <algorithm>
 
 void LogAnalyzer::analyze(const std::vector<LogEntry>& logs)
 {
@@ -31,8 +32,36 @@ void LogAnalyzer::analyze(const std::vector<LogEntry>& logs)
     std::cout << "===========================================" << std::endl;
 }
 
-auto errors =
-    Filter::byLevel(logs, LogLevel::ERROR);
+void LogAnalyzer::showErrorLogs(const std::vector<LogEntry>& logs)
+{
+    std::cout << "\n========== ERROR LOGS ==========\n\n";
+
+    int count = 0;
+
+    for (const auto& log : logs)
+    {
+        if (log.level == LogLevel::ERROR)
+        {
+            count++;
+
+            std::cout << "Timestamp : "
+                      << log.timestamp << std::endl;
+
+            std::cout << "Module    : "
+                      << log.module << std::endl;
+
+            std::cout << "Message   : "
+                      << log.message << std::endl;
+
+            std::cout
+                << "--------------------------------------\n";
+        }
+    }
+
+    std::cout << "Total ERROR Logs : "
+              << count
+              << std::endl;
+}
 
 void LogAnalyzer::searchModule(const std::vector<LogEntry>& logs,
                             const std::string& module)

@@ -17,4 +17,6 @@ add_executable(
     src/Filter.cpp
     src/ReportExporter.cpp
     src/Sorter.cpp
+    src/Statistics.cpp
+    src/Timestamp.cpp
 )
