@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "LogParser.h"
+#include "Analyzer.h"
 
 int main()
 {
@@ -13,6 +14,10 @@ int main()
               << logs.size()
               << "\n\n";
 
+    Analyzer analyzer;
+    analyzer.analyze(logs);
+
+    /*
     for (const auto& log : logs)
     {
         std::cout << "Timestamp : " << log.timestamp << std::endl;
@@ -23,6 +28,7 @@ int main()
         std::cout
             << "--------------------------------------\n";
     }
-
+    */
+   
     return 0;
 }
