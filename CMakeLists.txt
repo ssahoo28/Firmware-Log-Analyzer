@@ -11,5 +11,6 @@ add_executable(
 
     src/main.cpp
     src/LogParser.cpp
-    src/Analyzer.cpp
+    src/LogAnalyzer.cpp
+    src/LogLevelUtils.cpp
 )

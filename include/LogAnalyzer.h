@@ -7,7 +7,7 @@
 
 #include "LogEntry.h"
 
-class Analyzer
+class LogAnalyzer
 {
 public:
 

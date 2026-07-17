@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include "Analyzer.h"
+#include "LogAnalyzer.h"
 #include "LogParser.h"
 
 int main()
 {
     LogParser parser;
-    Analyzer analyzer;
+    LogAnalyzer analyzer;
 
     std::vector<LogEntry> logs =
         parser.parseFile("../logs/sample_log.txt");

@@ -3,10 +3,18 @@
 
 #include <string>
 
+enum class LogLevel
+{
+    INFO,
+    WARNING,
+    ERROR,
+    UNKNOWN
+};
+
 struct LogEntry
 {
     std::string timestamp;
-    std::string level;
+    LogLevel level;
     std::string module;
     std::string message;
 };

@@ -1,4 +1,5 @@
 #include "LogParser.h"
+#include "LogLevelUtils.h"
 
 #include <fstream>
 #include <iostream>
@@ -42,7 +43,11 @@ std::vector<LogEntry> LogParser::parseFile(const std::string& filename)
         // -----------------------------
         // Extract Level
         // -----------------------------
-        ss >> entry.level;
+        std::string levelString;
+
+        ss >> levelString;
+
+        entry.level = stringToLogLevel(levelString);
 
         // -----------------------------
         // Extract Module

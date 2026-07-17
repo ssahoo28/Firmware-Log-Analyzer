@@ -1,9 +1,10 @@
-#include "Analyzer.h"
+#include "LogAnalyzer.h"
 
 #include <iostream>
 #include <fstream>
+#include <LogLevelUtils.h>
 
-void Analyzer::analyze(const std::vector<LogEntry>& logs)
+void LogAnalyzer::analyze(const std::vector<LogEntry>& logs)
 {
     infoCount = 0;
     warningCount = 0;
@@ -13,11 +14,11 @@ void Analyzer::analyze(const std::vector<LogEntry>& logs)
 
     for (const auto& log : logs)
     {
-        if (log.level == "INFO")
+        if(log.level==LogLevel::INFO)
             infoCount++;
-        else if (log.level == "WARNING")
+        else if(log.level==LogLevel::WARNING)
             warningCount++;
-        else if (log.level == "ERROR")
+        else if (log.level == LogLevel::ERROR)
             errorCount++;
 
         moduleCount[log.module]++;
@@ -45,7 +46,7 @@ void Analyzer::analyze(const std::vector<LogEntry>& logs)
     std::cout << "===========================================" << std::endl;
 }
 
-void Analyzer::showErrorLogs(const std::vector<LogEntry>& logs)
+void LogAnalyzer::showErrorLogs(const std::vector<LogEntry>& logs)
 {
     std::cout << "\n========== ERROR LOGS ==========\n\n";
 
@@ -53,7 +54,7 @@ void Analyzer::showErrorLogs(const std::vector<LogEntry>& logs)
 
     for (const auto& log : logs)
     {
-        if (log.level == "ERROR")
+        if (log.level == LogLevel::ERROR)
         {
             count++;
 
@@ -76,7 +77,7 @@ void Analyzer::showErrorLogs(const std::vector<LogEntry>& logs)
               << std::endl;
 }
 
-void Analyzer::searchModule(const std::vector<LogEntry>& logs,
+void LogAnalyzer::searchModule(const std::vector<LogEntry>& logs,
                             const std::string& module)
 {
     int count = 0;
@@ -117,7 +118,7 @@ void Analyzer::searchModule(const std::vector<LogEntry>& logs,
     }
 }
 
-void Analyzer::searchKeyword(const std::vector<LogEntry>& logs,
+void LogAnalyzer::searchKeyword(const std::vector<LogEntry>& logs,
                              const std::string& keyword)
 {
     int count = 0;
@@ -134,7 +135,7 @@ void Analyzer::searchKeyword(const std::vector<LogEntry>& logs,
                       << log.timestamp << std::endl;
 
             std::cout << "Level     : "
-                      << log.level << std::endl;
+                      << logLevelToString(log.level) << std::endl;
 
             std::cout << "Module    : "
                       << log.module << std::endl;
@@ -159,7 +160,7 @@ void Analyzer::searchKeyword(const std::vector<LogEntry>& logs,
     }
 }
 
-void Analyzer::exportReport(const std::vector<LogEntry>& logs)
+void LogAnalyzer::exportReport(const std::vector<LogEntry>& logs)
 {
     std::ofstream report("../output/report.txt");
 
