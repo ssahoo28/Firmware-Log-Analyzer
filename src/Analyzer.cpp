@@ -1,6 +1,7 @@
 #include "Analyzer.h"
 
 #include <iostream>
+#include <fstream>
 
 void Analyzer::analyze(const std::vector<LogEntry>& logs)
 {
@@ -42,4 +43,152 @@ void Analyzer::analyze(const std::vector<LogEntry>& logs)
     }
 
     std::cout << "===========================================" << std::endl;
+}
+
+void Analyzer::showErrorLogs(const std::vector<LogEntry>& logs)
+{
+    std::cout << "\n========== ERROR LOGS ==========\n\n";
+
+    int count = 0;
+
+    for (const auto& log : logs)
+    {
+        if (log.level == "ERROR")
+        {
+            count++;
+
+            std::cout << "Timestamp : "
+                      << log.timestamp << std::endl;
+
+            std::cout << "Module    : "
+                      << log.module << std::endl;
+
+            std::cout << "Message   : "
+                      << log.message << std::endl;
+
+            std::cout
+                << "--------------------------------------\n";
+        }
+    }
+
+    std::cout << "Total ERROR Logs : "
+              << count
+              << std::endl;
+}
+
+void Analyzer::searchModule(const std::vector<LogEntry>& logs,
+                            const std::string& module)
+{
+    int count = 0;
+
+    std::cout << "\n====== MODULE : "
+              << module
+              << " ======\n\n";
+
+    for (const auto& log : logs)
+    {
+        if (log.module == module)
+        {
+            count++;
+
+            std::cout << "Timestamp : "
+                      << log.timestamp << std::endl;
+
+            std::cout << "Level     : "
+                      << log.level << std::endl;
+
+            std::cout << "Message   : "
+                      << log.message << std::endl;
+
+            std::cout
+                << "--------------------------------------\n";
+        }
+    }
+
+    if (count == 0)
+    {
+        std::cout << "No logs found.\n";
+    }
+    else
+    {
+        std::cout << "Total Matching Logs : "
+                  << count
+                  << std::endl;
+    }
+}
+
+void Analyzer::searchKeyword(const std::vector<LogEntry>& logs,
+                             const std::string& keyword)
+{
+    int count = 0;
+
+    std::cout << "\n========== SEARCH RESULTS ==========\n\n";
+
+    for (const auto& log : logs)
+    {
+        if (log.message.find(keyword) != std::string::npos)
+        {
+            count++;
+
+            std::cout << "Timestamp : "
+                      << log.timestamp << std::endl;
+
+            std::cout << "Level     : "
+                      << log.level << std::endl;
+
+            std::cout << "Module    : "
+                      << log.module << std::endl;
+
+            std::cout << "Message   : "
+                      << log.message << std::endl;
+
+            std::cout
+                << "--------------------------------------\n";
+        }
+    }
+
+    if (count == 0)
+    {
+        std::cout << "No matching logs found.\n";
+    }
+    else
+    {
+        std::cout << "Total Matching Logs : "
+                  << count
+                  << std::endl;
+    }
+}
+
+void Analyzer::exportReport(const std::vector<LogEntry>& logs)
+{
+    std::ofstream report("../output/report.txt");
+
+    if (!report)
+    {
+        std::cout << "Unable to create report file.\n";
+        return;
+    }
+
+    report << "=========== Firmware Log Report ===========" << std::endl;
+    report << "Total Logs : " << logs.size() << std::endl;
+    report << "INFO : " << infoCount << std::endl;
+    report << "WARNING : " << warningCount << std::endl;
+    report << "ERROR : " << errorCount << std::endl;
+
+    report << "\nModule Statistics\n";
+    report << "-----------------\n";
+
+    for (const auto& module : moduleCount)
+    {
+        report << module.first
+               << " : "
+               << module.second
+               << std::endl;
+    }
+
+    report << "===========================================" << std::endl;
+
+    report.close();
+
+    std::cout << "Report exported successfully!\n";
 }
