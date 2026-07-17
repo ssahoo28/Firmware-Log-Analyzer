@@ -1,5 +1,5 @@
 # Firmware-Log-Analyzer
-# Firmware Log Analyzer
+
 
 A modular **C++ Firmware Log Analyzer** that parses firmware diagnostic logs, analyzes log data, generates statistics, and exports reports. The project demonstrates object-oriented design, STL usage, file handling, and CMake-based project organization.
 
